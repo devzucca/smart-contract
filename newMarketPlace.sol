@@ -562,7 +562,7 @@ contract NFTAuction {
      * been set by the NFT seller. If not, return the default value. *
      *****************************************************************/
 
-    function _getBidIncreasePercentage(
+    function _getBidIncreasePercentage (
         address _nftContractAddress,
         uint256 _tokenId
     ) internal view returns (uint32) {
@@ -751,6 +751,16 @@ contract NFTAuction {
         priceGreaterThanZero(_minPrice)
     {
         _createNewNftAuction(
+            _nftContractAddress,
+            _tokenId,
+            _erc20Token,
+            _minPrice,
+            _buyNowPrice,
+            _feeRecipients,
+            _feePercentages
+        );
+
+        emit NftAuctionCreated(
             _nftContractAddress,
             _tokenId,
             _erc20Token,
